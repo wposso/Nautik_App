@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/views/login/loginController.dart';
-import 'package:nautik_app/core/views/login/viewModel.dart';
+import 'package:nautik_app/core/views/loginView/loginController.dart';
+import 'package:nautik_app/core/views/loginView/viewModel.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -42,7 +43,7 @@ class _LoginState extends State<Login> {
                     TextField(
                       controller: emailController,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person_outline_sharp, size: 30),
+                        prefixIcon: Icon(Ionicons.mail_outline, size: 30),
                         hintText: 'Correo electrónico',
                         hintStyle: TextStyle(fontSize: generalText),
                         border: UnderlineInputBorder(),
@@ -53,7 +54,10 @@ class _LoginState extends State<Login> {
                       controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.lock_rounded, size: 35),
+                        prefixIcon: Icon(
+                          Ionicons.lock_closed_outline,
+                          size: 35,
+                        ),
                         hintText: 'Contraseña',
                         hintStyle: TextStyle(fontSize: generalText),
                         border: UnderlineInputBorder(),
@@ -81,26 +85,9 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                     buildHeight(60),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: Size(250, 60),
-                        backgroundColor: primaryColor,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        Authentication(context);
-                      },
-                      child: Text(
-                        'Iniciar sesión',
-                        style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    buildPrimaryButton(context, 'Iniciar sesión', () {
+                      Authentication(context);
+                    }),
                   ],
                 ),
               ),
@@ -113,10 +100,17 @@ class _LoginState extends State<Login> {
                   '¿Aún no tienes cuenta?',
                   style: TextStyle(fontSize: generalText),
                 ),
-                buildWidth(15),
-                Text(
-                  'Registrarse',
-                  style: TextStyle(fontSize: generalText, color: primaryColor),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/Register');
+                  },
+                  child: Text(
+                    'Registrarse',
+                    style: TextStyle(
+                      fontSize: generalText,
+                      color: primaryColor,
+                    ),
+                  ),
                 ),
               ],
             ),
