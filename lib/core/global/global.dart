@@ -17,28 +17,76 @@ class User {
   });
 }
 
-List<User> usersList = [];
+List<User> usersList = [
+  User(
+    email: 'melissa@mail.com',
+    name: 'Melissa Mora',
+    phone: '324 45667778',
+    password: 'Colombia123',
+  ),
+  User(
+    email: 'willinton@mail.com',
+    name: 'Willinton Posso',
+    phone: '324 63572023',
+    password: 'admin123',
+  ),
+];
+
+List<Map<String, dynamic>> menuList = [
+  {
+    'image': Image.asset('assets/dishes/001.jpg', fit: BoxFit.cover),
+    'name': 'Pizza Margherita',
+    'country': 'Italia',
+    'rating': '4.8/5',
+  },
+  {
+    'image': Image.asset('assets/dishes/002.jpg', fit: BoxFit.cover),
+    'name': 'Tacos al Pastor',
+    'country': 'México',
+    'rating': '4.7/5',
+  },
+  {
+    'image': Image.asset('assets/dishes/003.jpg', fit: BoxFit.cover),
+    'name': 'Sushi',
+    'country': 'Japón',
+    'rating': '4.9/5',
+  },
+  {
+    'image': Image.asset('assets/dishes/004.png', fit: BoxFit.cover),
+    'name': 'Paella',
+    'country': 'España',
+    'rating': '4.6/5',
+  },
+  {
+    'image': Image.asset('assets/dishes/005.jpg', fit: BoxFit.cover),
+    'name': 'Croissant',
+    'country': 'Francia',
+    'rating': '4.5/5',
+  },
+  {
+    'image': Image.asset('assets/dishes/006.jpg', fit: BoxFit.cover),
+    'name': 'Pad Thai',
+    'country': 'Tailandia',
+    'rating': '4.7/5',
+  },
+];
 
 Widget nautik_logo() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Image.asset(
-      'assets/nautik_logo.jpeg',
-      fit: BoxFit.cover,
-      // height: 100,
-      // width: 100,
-    ),
+    child: Image.asset('assets/logo/nautik_logo.jpeg'),
   );
 }
 
 Widget nautik_banner() {
   return Image.asset(
-    'assets/nautik_baner.jpeg',
-    // fit: BoxFit.cover,
-    height: 50,
-    width: 70,
+    'assets/logo/nautik_baner.jpeg',
+    fit: BoxFit.contain,
+    width: double.infinity,
+    height: 200,
   );
 }
+
 
 Color primaryColor = Color.fromARGB(255, 56, 224, 245);
 Color backgroundColor = Colors.white;
@@ -126,6 +174,7 @@ void buildInfoDialog(BuildContext context, String tittle, String message) {
 }
 
 Widget buildDrawer(BuildContext context) {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   return Drawer(
     backgroundColor: backgroundColor,
     child: Column(

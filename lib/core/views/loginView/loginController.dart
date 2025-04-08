@@ -9,8 +9,19 @@ void Authentication(BuildContext context) {
   String emailEntered = emailController.text.trim();
   String passwordEntered = passwordController.text.trim();
 
+  if (emailEntered.isEmpty || passwordEntered.isEmpty) {
+    buildInfoDialog(
+      context,
+      'Campos Vacíos',
+      'Por favor ingresa tu correo y \ncontraseña.',
+    );
+    return;
+  }
+
+  bool isAuthenticated = false;
   for (var user in usersList) {
     if (user.email == emailEntered && user.password == passwordEntered) {
+      isAuthenticated = true;
       buildInfoDialog(
         context,
         'Inicio de sesión exitoso',
@@ -18,26 +29,29 @@ void Authentication(BuildContext context) {
       );
       triedAuth = 0;
       Navigator.pushReplacementNamed(context, '/Home');
-      return;
-    } else {
-      triedAuth++;
-
-      if (triedAuth >= 2) {
-        changePassword = true;
-        buildInfoDialog(
-          context,
-          'Datos incorrectos',
-          'Los datos que ingresaste son \nincorrectos. ¿Desea \nreestablecer su contraseña \npor medio del correo \nelectrónico?',
-        );
-      } else {
-        buildInfoDialog(
-          context,
-          'Datos incorrectos',
-          'Contraseña o usuario inválido. \nVuelve a intentarlo',
-        );
-      }
+      break;
     }
-    emailController.clear();
-    passwordController.clear();
   }
+
+  if (!isAuthenticated) {
+    triedAuth++;
+
+    if (triedAuth >= 2) {
+      changePassword = true;
+      buildInfoDialog(
+        context,
+        'Datos incorrectos',
+        'Los datos que ingresaste son \nincorrectos. ¿Deseas \nreestablecer tu contraseña \npor medio del correo \nelectrónico?',
+      );
+    } else {
+      buildInfoDialog(
+        context,
+        'Datos incorrectos',
+        'Contraseña o usuario inválido. \nVuelve a intentarlo',
+      );
+    }
+  }
+
+  emailController.clear();
+  passwordController.clear();
 }

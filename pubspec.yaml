@@ -60,8 +60,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/nautik_baner.jpeg
-    - assets/nautik_logo.jpeg
+    - assets/logo/nautik_baner.jpeg
+    - assets/logo/nautik_logo.jpeg
+    - assets/dishes/001.jpg
+    - assets/dishes/002.jpg
+    - assets/dishes/003.jpg
+    - assets/dishes/004.png
+    - assets/dishes/005.jpg
+    - assets/dishes/006.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
