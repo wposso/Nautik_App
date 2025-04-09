@@ -41,7 +41,9 @@ class GlobalDrawer extends StatelessWidget {
                   context,
                   Ionicons.fish_outline,
                   'Pide en línea',
-                  () {},
+                  () {
+                    Navigator.pushNamed(context, '/Categories');
+                  },
                 ),
                 buildListile(
                   context,

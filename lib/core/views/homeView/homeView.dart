@@ -98,13 +98,11 @@ class _HomeState extends State<Home> {
           children: [
             buildHeight(20),
             SearchBar(
-              backgroundColor: WidgetStatePropertyAll(
-                const Color.fromARGB(255, 248, 248, 248),
-              ),
+              backgroundColor: WidgetStatePropertyAll(searchbarColor),
               leading: Icon(Ionicons.search_outline),
               hintText: 'Buscar platos',
               shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
               ),
             ),
             buildHeight(50),
@@ -223,7 +221,9 @@ class _HomeState extends State<Home> {
               }),
             ),
             buildHeight(70),
-            buildPrimaryButton(context, 'Pide en línea', () {}),
+            buildPrimaryButton(context, 'Pide en línea', () {
+              buildDialogOnline(context);
+            }),
             buildHeight(20),
             buildPrimaryButton(context, 'Mis pedidos', () {}),
           ],

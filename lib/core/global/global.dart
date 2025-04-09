@@ -71,6 +71,39 @@ List<Map<String, dynamic>> menuList = [
   },
 ];
 
+List<Map<String, dynamic>> categoriesList = [
+  {
+    'image': Image.asset('assets/dishes/001.jpg', fit: BoxFit.cover),
+    'name': 'Pizza Margherita',
+    'products': menuList,
+  },
+  {
+    'image': Image.asset('assets/dishes/002.jpg', fit: BoxFit.cover),
+    'name': 'Tacos al Pastor',
+    'products': menuList,
+  },
+  {
+    'image': Image.asset('assets/dishes/003.jpg', fit: BoxFit.cover),
+    'name': 'Sushi',
+    'products': menuList,
+  },
+  {
+    'image': Image.asset('assets/dishes/004.png', fit: BoxFit.cover),
+    'name': 'Paella',
+    'products': menuList,
+  },
+  {
+    'image': Image.asset('assets/dishes/005.jpg', fit: BoxFit.cover),
+    'name': 'Croissant',
+    'products': menuList,
+  },
+  {
+    'image': Image.asset('assets/dishes/006.jpg', fit: BoxFit.cover),
+    'name': 'Pad Thai',
+    'products': menuList,
+  },
+];
+
 Widget nautik_logo() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
@@ -87,10 +120,10 @@ Widget nautik_banner() {
   );
 }
 
-
 Color primaryColor = Color.fromARGB(255, 56, 224, 245);
 Color backgroundColor = Colors.white;
 double generalText = 18;
+Color searchbarColor = Color.fromARGB(255, 240, 240, 240);
 
 bool changePassword = false;
 void buildInfoDialog(BuildContext context, String tittle, String message) {
