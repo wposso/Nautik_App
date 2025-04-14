@@ -12,6 +12,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool isActive = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +52,27 @@ class _LoginState extends State<Login> {
                     ),
                     buildHeight(30),
                     TextField(
+                      onChanged: (x) {
+                        setState(() {});
+                      },
                       controller: passwordController,
-                      obscureText: true,
+                      obscureText: isActive,
                       decoration: InputDecoration(
+                        suffixIcon:
+                            passwordController.text.isEmpty
+                                ? SizedBox.shrink()
+                                : IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      isActive = !isActive;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    isActive
+                                        ? Ionicons.eye_outline
+                                        : Ionicons.eye_off_outline,
+                                  ),
+                                ),
                         prefixIcon: Icon(
                           Ionicons.lock_closed_outline,
                           size: 35,

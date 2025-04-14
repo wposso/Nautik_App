@@ -107,7 +107,7 @@ List<Map<String, dynamic>> categoriesList = [
 Widget nautik_logo() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Image.asset('assets/logo/nautik_logo.jpeg'),
+    child: Image.asset('assets/logo/nautik_logo.png'),
   );
 }
 
@@ -120,14 +120,15 @@ Widget nautik_banner() {
   );
 }
 
-Color primaryColor = Color.fromARGB(255, 56, 224, 245);
+// Color primaryColor = Color.fromARGB(255, 56, 224, 245);
+Color primaryColor = const Color.fromARGB(255, 2, 95, 170);
 Color backgroundColor = Colors.white;
 double generalText = 18;
 Color searchbarColor = Color.fromARGB(255, 240, 240, 240);
 
 bool changePassword = false;
 void buildInfoDialog(BuildContext context, String tittle, String message) {
-  showCupertinoDialog(
+  showDialog(
     context: context,
     builder: (x) {
       return AlertDialog(

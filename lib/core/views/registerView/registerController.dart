@@ -12,6 +12,12 @@ void registerUser(BuildContext context) {
       'Registro fallido',
       'Recuerda ingresar los datos \ncorrectamente',
     );
+  } else if (isChecked == false) {
+    buildInfoDialog(
+      context,
+      'Registro fallido',
+      'Debes aceptar la política\n de privacidad',
+    );
   } else {
     usersList.add(
       User(
@@ -31,4 +37,5 @@ void registerUser(BuildContext context) {
   nameControllerVR.clear();
   phoneControllerVR.clear();
   passwordControllerVR.clear();
+  isChecked = false;
 }

@@ -12,7 +12,7 @@ void Authentication(BuildContext context) {
   if (emailEntered.isEmpty || passwordEntered.isEmpty) {
     buildInfoDialog(
       context,
-      'Campos Vacíos',
+      'Campos Faltantes',
       'Por favor ingresa tu correo y \ncontraseña.',
     );
     return;

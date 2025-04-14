@@ -86,7 +86,7 @@ void buildDialogOnline(BuildContext context) {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Disfruta de la mejor comida de\n mar que tenemos para tí',
+              'Platos del mar, carnes y más, siempre frescos y con sabor único.',
               style: TextStyle(fontSize: 17),
             ),
             buildHeight(15),
@@ -95,6 +95,9 @@ void buildDialogOnline(BuildContext context) {
         ),
         actionsPadding: EdgeInsets.zero,
         actions: [
+          // buildPrimaryButton(context, 'Domicilio', () {
+          //   Navigator.pushReplacementNamed(context, '/Categories');
+          // }),
           GestureDetector(
             onTap: () {
               Navigator.pushReplacementNamed(context, '/Categories');
