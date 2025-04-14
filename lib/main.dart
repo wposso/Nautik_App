@@ -14,6 +14,20 @@ class NautikApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/Login',
       routes: routes,
+      builder: (context, child) {
+        return Banner(
+          message: 'Staging',
+          location: BannerLocation.topEnd,
+          color: Color(0xA0B71C1C),
+          textStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 12.0,
+            letterSpacing: 1.0,
+            color: Colors.white,
+          ),
+          child: child!,
+        );
+      },
     );
   }
 }

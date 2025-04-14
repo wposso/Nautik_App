@@ -18,7 +18,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 38),
         child: Column(
           children: [
             SizedBox(width: 250, child: nautik_logo()),

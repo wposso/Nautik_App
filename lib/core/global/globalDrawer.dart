@@ -76,23 +76,28 @@ class GlobalDrawer extends StatelessWidget {
           ),
           Spacer(),
           Divider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
+          Column(
+            children: [
+              Text('Nuestras redes sociales'),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Ionicons.logo_facebook, size: 40),
-                    buildWidth(40),
-                    Icon(Ionicons.logo_twitter, size: 40),
-                    buildWidth(40),
-                    Icon(Ionicons.logo_instagram, size: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Ionicons.logo_facebook, size: 40),
+                        buildWidth(40),
+                        Icon(Ionicons.logo_twitter, size: 40),
+                        buildWidth(40),
+                        Icon(Ionicons.logo_instagram, size: 40),
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

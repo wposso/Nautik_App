@@ -3,6 +3,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
 import 'package:nautik_app/core/views/loginView/loginController.dart';
 import 'package:nautik_app/core/views/loginView/viewModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,35 +14,44 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool isActive = true;
+
+  void initState() {
+    super.initState();
+    loadSavedCredentials();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(width: 250, child: nautik_logo())],
+            ),
+            buildHeight(50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 260,
-                  width: 280,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: nautik_logo(),
-                  ),
+                Text(
+                  textAlign: TextAlign.center,
+                  '¡Bienvenido de nuevo! Por favor inicia \nsesión para continuar.',
+                  style: TextStyle(fontSize: generalText),
                 ),
               ],
             ),
-            buildHeight(50),
+            buildHeight(30),
             Form(
               child: Padding(
                 padding: EdgeInsets.all(20),
                 child: Column(
                   children: [
                     TextField(
+                      autofocus: true,
                       controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Ionicons.mail_outline, size: 30),
@@ -71,6 +81,7 @@ class _LoginState extends State<Login> {
                                     isActive
                                         ? Ionicons.eye_outline
                                         : Ionicons.eye_off_outline,
+                                    size: 30,
                                   ),
                                 ),
                         prefixIcon: Icon(
@@ -95,15 +106,36 @@ class _LoginState extends State<Login> {
                           activeColor: Colors.white,
                           activeTrackColor: Colors.green,
                           value: onOff,
-                          onChanged: (x) {
+                          onChanged: (x) async {
+                            final prefs = await SharedPreferences.getInstance();
+
                             setState(() {
-                              onOff = !onOff;
+                              onOff = x;
                             });
+
+                            if (onOff) {
+                              // Guarda solo si hay contenido
+                              if (emailController.text.isNotEmpty) {
+                                prefs.setString('email', emailController.text);
+                              }
+                              if (passwordController.text.isNotEmpty) {
+                                prefs.setString(
+                                  'password',
+                                  passwordController.text,
+                                );
+                              }
+                              prefs.setBool('rememberMe', true);
+                            } else {
+                              // Limpia todo si desactiva
+                              prefs.remove('email');
+                              prefs.remove('password');
+                              prefs.setBool('rememberMe', false);
+                            }
                           },
                         ),
                       ],
                     ),
-                    buildHeight(60),
+                    buildHeight(80),
                     buildPrimaryButton(context, 'Iniciar sesión', () {
                       Authentication(context);
                     }),
@@ -111,7 +143,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            buildHeight(70),
+            buildHeight(20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

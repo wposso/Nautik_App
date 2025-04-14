@@ -78,39 +78,42 @@ class _CategoriesviewState extends State<Categoriesview> {
                 itemCount: categoriesList.length,
                 itemBuilder: (context, i) {
                   final category = categoriesList[i];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => Productsview(
-                                products: category['products'],
-                                categoryName: category['name'],
-                              ),
+                  return Container(
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) => Productsview(
+                                  products: category['products'],
+                                  categoryName: category['name'],
+                                ),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      );
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      child: Column(
-                        children: [
-                          category['image'],
-                          Container(
-                            height: 46.5,
-                            width: double.infinity,
-                            decoration: BoxDecoration(color: primaryColor),
-                            padding: EdgeInsets.all(5),
-                            child: Center(
-                              child: Text(
-                                category['name'],
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                        child: Column(
+                          children: [
+                            category['image'],
+                            Container(
+                              height: 46.5,
+                              width: double.infinity,
+                              decoration: BoxDecoration(color: primaryColor),
+                              padding: EdgeInsets.all(5),
+                              child: Center(
+                                child: Text(
+                                  category['name'],
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );

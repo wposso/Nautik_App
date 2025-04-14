@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nautik_app/core/global/global.dart';
 import 'package:nautik_app/core/views/loginView/viewModel.dart';
 import 'package:nautik_app/core/views/registerView/viewModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void Authentication(BuildContext context) {
   String emailEntered = emailController.text.trim();
@@ -54,4 +55,18 @@ void Authentication(BuildContext context) {
 
   emailController.clear();
   passwordController.clear();
+}
+
+void loadSavedCredentials() async {
+  final prefs = await SharedPreferences.getInstance();
+  final savedEmail = prefs.getString('email');
+  final savedPassword = prefs.getString('password');
+  final remember = prefs.getBool('rememberMe') ?? false;
+
+  onOff = remember; // usar la variable global
+
+  if (onOff) {
+    if (savedEmail != null) emailController.text = savedEmail;
+    if (savedPassword != null) passwordController.text = savedPassword;
+  }
 }

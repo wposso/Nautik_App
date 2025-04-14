@@ -30,7 +30,7 @@ void welcomeUser(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Bienvenido a Nautik, ahora puedes\n disfrutar de la mejor comida',
+                  'Bienvenido a nuestra aplicación \nahora podrás disfrutar de la mejor \ncomida',
                   style: TextStyle(fontSize: generalText),
                   textAlign: TextAlign.center,
                 ),
@@ -57,17 +57,14 @@ void welcomeUser(BuildContext context) {
       );
     },
   );
-
-  // Timer(Duration(seconds: 4), () {
-  //   Navigator.pop(context);
-  // });
 }
 
 void buildDialogOnline(BuildContext context) {
-  showCupertinoDialog(
+  showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
+        insetPadding: EdgeInsets.symmetric(horizontal: 8),
         contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         titlePadding: EdgeInsets.zero,
@@ -85,47 +82,45 @@ void buildDialogOnline(BuildContext context) {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Platos del mar, carnes y más, siempre frescos y con sabor único.',
-              style: TextStyle(fontSize: 17),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  textAlign: TextAlign.center,
+                  'Sabores frescos del mar, cortes selectos \ny mucho más… ¡una experiencia única en \ncada plato!',
+                  style: TextStyle(fontSize: generalText),
+                ),
+              ],
             ),
             buildHeight(15),
-            Image.asset('assets/dishes/006.jpg', fit: BoxFit.cover),
-          ],
-        ),
-        actionsPadding: EdgeInsets.zero,
-        actions: [
-          // buildPrimaryButton(context, 'Domicilio', () {
-          //   Navigator.pushReplacementNamed(context, '/Categories');
-          // }),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushReplacementNamed(context, '/Categories');
-            },
-            child: Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Center(
-                  child: Text(
-                    'Domicilio',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: generalText,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+            SizedBox(
+              height: 200,
+              width: 350,
+              child: Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: menuList.length,
+                  itemBuilder: (context, i) {
+                    return Card(
+                      elevation: 3,
+                      child: SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: menuList[i]['image'],
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: buildPrimaryButton(context, 'Domicilio', () {
+              Navigator.pushReplacementNamed(context, '/Categories');
+            }),
           ),
         ],
       );

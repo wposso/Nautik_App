@@ -59,25 +59,21 @@ class _HomeState extends State<Home> {
             ),
             iconTheme: IconThemeData(color: primaryColor),
             backgroundColor: Colors.white,
-            title: Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Center(
-                child: SizedBox(width: 310, height: 80, child: nautik_banner()),
-              ),
-            ),
+            // title: Center(
+            //   child: Text('N A U T I K A P P', style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
+            // ),
             centerTitle: true,
             actions: [
               Padding(
-                padding: EdgeInsets.only(right: 10, top: 10),
+                padding: EdgeInsets.only(right: 8, top: 8),
                 child: GestureDetector(
                   onTap: () {},
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.yellow,
-                    child: ClipOval(
-                      child: Container(
-                        color: primaryColor,
-                        alignment: Alignment.center,
+                  child: ClipOval(
+                    child: Container(
+                      color: primaryColor,
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Icon(
                           Ionicons.cart_outline,
                           color: Colors.white,
@@ -122,14 +118,19 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Text(
-              'Aquí podrás ver algunos de los platos calificados como los más populares en diferentes partes del mundo. ¡Descubre sabores únicos y evalúa tus favoritos!',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey[700],
-                fontWeight: FontWeight.normal,
-              ),
-              textAlign: TextAlign.left,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Explora los platos más populares de \ndistintas partes del mundo. Descubre \nsabores únicos y califica tus favoritos.',
+                  style: TextStyle(
+                    fontSize: generalText,
+                    color: Colors.grey[700],
+                    fontWeight: FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
             ),
             buildHeight(20),
             Container(
@@ -191,7 +192,7 @@ class _HomeState extends State<Home> {
                                   'Calificación: $rating',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.amber,
+                                    color: Colors.green,
                                   ),
                                 ),
                               ],
