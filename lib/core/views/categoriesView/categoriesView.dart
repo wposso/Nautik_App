@@ -27,11 +27,7 @@ class _CategoriesviewState extends State<Categoriesview> {
           },
           icon: Icon(Ionicons.arrow_back_outline, color: Colors.white),
         ),
-        title: Text(
-          'Categorías',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
+        title: Text('Categorías', style: TextStyle(color: Colors.white)),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -78,42 +74,47 @@ class _CategoriesviewState extends State<Categoriesview> {
                 itemCount: categoriesList.length,
                 itemBuilder: (context, i) {
                   final category = categoriesList[i];
-                  return Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) => Productsview(
-                                  products: category['products'],
-                                  categoryName: category['name'],
-                                ),
-                          ),
-                        );
-                      },
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => Productsview(
+                                products: category['products'],
+                                categoryName: category['name'],
+                              ),
                         ),
-                        child: Column(
-                          children: [
-                            category['image'],
-                            Container(
-                              height: 46.5,
-                              width: double.infinity,
-                              decoration: BoxDecoration(color: primaryColor),
-                              padding: EdgeInsets.all(5),
-                              child: Center(
-                                child: Text(
-                                  category['name'],
-                                  style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      clipBehavior:
+                          Clip.antiAlias, // 👈 esto hace que el contenido (imagen) respete los bordes
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child:
+                                category['image'], // Asegúrate de que la imagen se adapta
+                          ),
+                          Container(
+                            height: 46.5,
+                            color: primaryColor,
+                            padding: EdgeInsets.all(5),
+                            child: Center(
+                              child: Text(
+                                category['name'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   );

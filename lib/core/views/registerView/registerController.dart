@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
 import 'package:nautik_app/core/views/registerView/viewModel.dart';
 
@@ -11,12 +12,14 @@ void registerUser(BuildContext context) {
       context,
       'Registro fallido',
       'Recuerda ingresar los datos \ncorrectamente',
+      Ionicons.close_circle_outline,
     );
   } else if (isChecked == false) {
     buildInfoDialog(
       context,
       'Registro fallido',
       'Debes aceptar la política\n de privacidad',
+      Ionicons.close_circle_outline,
     );
   } else {
     usersList.add(
@@ -31,6 +34,7 @@ void registerUser(BuildContext context) {
       context,
       'Registro exitoso',
       'Ahora puedes disfrutar de la \nmejor comida de mar',
+      Ionicons.checkmark_circle_outline,
     );
   }
   emailControllerVR.clear();

@@ -82,7 +82,7 @@ class _RegisterState extends State<Register> {
               ],
             ),
             buildHeight(80),
-            buildPrimaryButton(context, 'Crear cuenta', () {
+            buildPrimaryButton(context, 'Registrarme', () {
               setState(() {
                 registerUser(context);
               });

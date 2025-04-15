@@ -8,18 +8,28 @@ import 'package:nautik_app/core/global/global.dart';
 import 'package:nautik_app/core/views/loginView/viewModel.dart';
 
 void welcomeUser(BuildContext context) {
-  showCupertinoDialog(
+  showDialog(
     context: context,
     builder: (x) {
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title: Column(
           children: [
-            Text(
-              textAlign: TextAlign.center,
-              'Inicio de sesión exitoso',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            Icon(
+              Ionicons.checkmark_circle_outline,
+              size: 60,
+              color: Color.fromARGB(255, 3, 194, 125),
+            ),
+            buildHeight(15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  textAlign: TextAlign.center,
+                  'Inicio de sesión exitoso',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ],
         ),
@@ -118,9 +128,14 @@ void buildDialogOnline(BuildContext context) {
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 30),
-            child: buildPrimaryButton(context, 'Domicilio', () {
-              Navigator.pushReplacementNamed(context, '/Categories');
-            }),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildPrimaryButton(context, 'Domicilio', () {
+                  Navigator.pushReplacementNamed(context, '/Categories');
+                }),
+              ],
+            ),
           ),
         ],
       );

@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:nautik_app/core/views/loginView/viewModel.dart';
 
 class User {
   String email;
@@ -38,36 +40,42 @@ List<Map<String, dynamic>> menuList = [
     'name': 'Pizza Margherita',
     'country': 'Italia',
     'rating': '4.8/5',
+    'price': 10.30,
   },
   {
     'image': Image.asset('assets/dishes/002.jpg', fit: BoxFit.cover),
     'name': 'Tacos al Pastor',
     'country': 'México',
     'rating': '4.7/5',
+    'price': 9.01,
   },
   {
     'image': Image.asset('assets/dishes/003.jpg', fit: BoxFit.cover),
     'name': 'Sushi',
     'country': 'Japón',
     'rating': '4.9/5',
+    'price': 34.01,
   },
   {
     'image': Image.asset('assets/dishes/004.png', fit: BoxFit.cover),
     'name': 'Paella',
     'country': 'España',
     'rating': '4.6/5',
+    'price': 53.03,
   },
   {
     'image': Image.asset('assets/dishes/005.jpg', fit: BoxFit.cover),
     'name': 'Croissant',
     'country': 'Francia',
     'rating': '4.5/5',
+    'price': 3.90,
   },
   {
     'image': Image.asset('assets/dishes/006.jpg', fit: BoxFit.cover),
     'name': 'Pad Thai',
     'country': 'Tailandia',
     'rating': '4.7/5',
+    'price': 36.10,
   },
 ];
 
@@ -120,26 +128,43 @@ Widget nautik_banner() {
   );
 }
 
-// Color primaryColor = Color.fromARGB(255, 56, 224, 245);
-Color primaryColor = const Color.fromARGB(255, 2, 95, 170);
+Color primaryColor = const Color.fromARGB(255, 19, 154, 248);
 Color backgroundColor = Colors.white;
-double generalText = 18;
+double generalText = 17;
 Color searchbarColor = Color.fromARGB(255, 240, 240, 240);
 
 bool changePassword = false;
-void buildInfoDialog(BuildContext context, String tittle, String message) {
+void buildInfoDialog(
+  BuildContext context,
+  String tittle,
+  String message,
+  IconData? icon,
+) {
   showDialog(
     context: context,
     builder: (x) {
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title: Column(
           children: [
-            Text(
-              textAlign: TextAlign.center,
-              tittle,
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            Icon(
+              icon,
+              size: 60,
+              color:
+                  icon == Ionicons.checkmark_circle_outline
+                      ? Color.fromARGB(255, 3, 194, 125)
+                      : Color.fromARGB(255, 254, 67, 69),
+            ),
+            buildHeight(15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  textAlign: TextAlign.center,
+                  tittle,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ],
         ),
@@ -222,7 +247,7 @@ Widget buildDrawer(BuildContext context) {
 Widget buildPrimaryButton(BuildContext context, String text, Function onTap) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      fixedSize: Size(300, 60),
+      fixedSize: Size(300, 55),
       backgroundColor: primaryColor,
       foregroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -230,7 +255,80 @@ Widget buildPrimaryButton(BuildContext context, String text, Function onTap) {
     onPressed: () => onTap(),
     child: Text(
       text,
-      style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     ),
+    // text == 'Iniciar sesión'
+    //     ? Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           text,
+    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    //         ),
+    //         buildWidth(60),
+    //         Icon(Ionicons.arrow_forward_outline, size: 30),
+    //       ],
+    //     )
+    //     : text == 'Registrarme'
+    //     ? Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           text,
+    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    //         ),
+    //         buildWidth(60),
+    //         Icon(Ionicons.create_outline, size: 30),
+    //       ],
+    //     )
+    //     : text == 'Pide en línea'
+    //     ? Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           text,
+    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    //         ),
+    //         buildWidth(60),
+    //         Icon(Ionicons.push_outline, size: 30),
+    //       ],
+    //     )
+    //     : text == 'Mis pedidos'
+    //     ? Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           text,
+    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    //         ),
+    //         buildWidth(60),
+    //         Icon(Ionicons.cart_outline, size: 30),
+    //       ],
+    //     )
+    //     : text == 'Domicilio'
+    //     ? Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           text,
+    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    //         ),
+    //         buildWidth(60),
+    //         Icon(Ionicons.bicycle_outline, size: 30),
+    //       ],
+    //     )
+    //     : text == 'Detalle'
+    //     ? Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Text(
+    //           text,
+    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    //         ),
+    //         buildWidth(60),
+    //         Icon(Ionicons.newspaper_outline, size: 30),
+    //       ],
+    //     )
+    //     : Text('data'),
   );
 }

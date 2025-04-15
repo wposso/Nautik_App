@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
 import 'package:nautik_app/core/views/loginView/viewModel.dart';
 import 'package:nautik_app/core/views/registerView/viewModel.dart';
@@ -15,6 +16,7 @@ void Authentication(BuildContext context) {
       context,
       'Campos Faltantes',
       'Por favor ingresa tu correo y \ncontraseña.',
+      Ionicons.alert_circle_outline,
     );
     return;
   }
@@ -27,6 +29,7 @@ void Authentication(BuildContext context) {
         context,
         'Inicio de sesión exitoso',
         '¡Bienvenido a Nautik App!',
+        Ionicons.checkmark_circle_outline,
       );
       triedAuth = 0;
       Navigator.pushReplacementNamed(context, '/Home');
@@ -43,12 +46,14 @@ void Authentication(BuildContext context) {
         context,
         'Datos incorrectos',
         'Los datos que ingresaste son \nincorrectos. ¿Deseas \nreestablecer tu contraseña \npor medio del correo \nelectrónico?',
+        Ionicons.close_circle_outline,
       );
     } else {
       buildInfoDialog(
         context,
         'Datos incorrectos',
         'Contraseña o usuario inválido. \nVuelve a intentarlo',
+        Ionicons.close_circle_outline,
       );
     }
   }
