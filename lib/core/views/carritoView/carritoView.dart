@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
 import 'package:nautik_app/core/views/loginView/viewModel.dart';
+import 'package:nautik_app/core/views/mapaLibreView/mapaLibreView.dart';
 
 class Carritoview extends StatelessWidget {
   final List<Map<String, dynamic>> productos;
@@ -33,6 +34,12 @@ class Carritoview extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapaLibreView()),
+                );
+              },
               leading: Icon(Ionicons.location_outline, size: 30),
               title: Text('Dirección de entrega'),
               trailing: Icon(Ionicons.chevron_forward_outline),

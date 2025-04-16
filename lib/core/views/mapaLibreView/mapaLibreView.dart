@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, library_private_types_in_public_api
+// ignore_for_file: non_constant_identifier_names, library_private_types_in_public_api, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -51,7 +51,8 @@ class _MapaLibreViewState extends State<MapaLibreView> {
             markers: [
               Marker(
                 child: Container(
-                  child: Icon(Ionicons.pin, color: Colors.red, size: 40),
+                  height: 40,
+                  child: Icon(Ionicons.location, color: Colors.red, size: 40),
                 ),
                 point: _selectedLocation,
               ),
