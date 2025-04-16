@@ -12,6 +12,7 @@ class NautikApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true),
       initialRoute: '/Login',
       routes: routes,
       builder: (context, child) {
