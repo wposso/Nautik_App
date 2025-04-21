@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/views/loginView/viewModel.dart';
-import 'package:nautik_app/core/views/mapaLibreView/mapaLibreView.dart';
+import 'package:nautik_app/core/screens/login_screen/login_model.dart';
+import 'package:nautik_app/core/screens/mapa_screen/mapa_screen.dart';
 
 class Carritoview extends StatelessWidget {
   final List<Map<String, dynamic>> productos;

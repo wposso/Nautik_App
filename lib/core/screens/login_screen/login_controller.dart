@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/views/loginView/viewModel.dart';
-import 'package:nautik_app/core/views/registerView/viewModel.dart';
+import 'package:nautik_app/core/screens/login_screen/login_model.dart';
+import 'package:nautik_app/core/screens/registro_screen/registro_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void Authentication(BuildContext context) {

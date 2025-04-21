@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:nautik_app/core/views/homeView/homeController.dart';
-import 'package:nautik_app/core/views/loginView/viewModel.dart';
+import 'package:nautik_app/core/screens/home_screen/home_controller.dart';
+import 'package:nautik_app/core/screens/login_screen/login_model.dart';
 
 class GlobalDrawer extends StatelessWidget {
   const GlobalDrawer({super.key});

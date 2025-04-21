@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/views/registerView/viewModel.dart';
+import 'package:nautik_app/core/screens/registro_screen/registro_model.dart';
 
 void registerUser(BuildContext context) {
   if (emailControllerVR.text.isEmpty ||
