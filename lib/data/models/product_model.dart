@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/screens/carrito_screen/carrito_screen.dart';
-import 'package:nautik_app/core/screens/login_screen/login_model.dart';
+import 'package:nautik_app/core/utils/ui_helpers.dart';
+import 'package:nautik_app/screens/carrito_screen.dart';
+import 'package:nautik_app/themes/colors.dart';
 
 void buildModalBottomSheet(
   BuildContext context,

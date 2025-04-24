@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/screens/productos_screen/productos_model.dart';
+import 'package:nautik_app/data/models/product_model.dart';
+import 'package:nautik_app/themes/colors.dart';
+import 'package:nautik_app/widgets/custom_widgets.dart';
 
 class Productsview extends StatefulWidget {
   final List<Map<String, dynamic>> products;

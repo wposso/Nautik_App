@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/global/global.dart';
+import 'package:nautik_app/themes/colors.dart';
 
 bool isPasswordVisible = false;
 

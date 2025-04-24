@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/global/global_drawer.dart';
-import 'package:nautik_app/core/screens/home_screen/home_model.dart';
-import 'package:nautik_app/core/screens/login_screen/login_model.dart';
+import 'package:nautik_app/core/utils/ui_helpers.dart';
+import 'package:nautik_app/core/widgets/global_drawer.dart';
+import 'package:nautik_app/modules/products/data/mock_menu_data.dart';
+import 'package:nautik_app/themes/colors.dart';
+import 'package:nautik_app/widgets/custom_widgets.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

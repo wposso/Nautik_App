@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/screens/login_screen/login_controller.dart';
-import 'package:nautik_app/core/screens/login_screen/login_model.dart';
+import 'package:nautik_app/core/utils/ui_helpers.dart';
+import 'package:nautik_app/modules/auth/controllers/authentication_controller.dart';
+import 'package:nautik_app/themes/colors.dart';
+import 'package:nautik_app/widgets/custom_widgets.dart';
+import 'package:nautik_app/widgets/nautik_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
@@ -17,11 +20,18 @@ class _LoginState extends State<Login> {
 
   void initState() {
     super.initState();
-    loadSavedCredentials();
+    Future.microtask(() {
+      final model =
+          Provider.of<AuthenticationController>(
+            context,
+            listen: false,
+          ).loadSavedCredentials();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<AuthenticationController>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -52,7 +62,7 @@ class _LoginState extends State<Login> {
                   children: [
                     TextField(
                       autofocus: true,
-                      controller: emailController,
+                      controller: model.emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Ionicons.mail_outline, size: 30),
                         hintText: 'Correo electrónico',
@@ -62,28 +72,9 @@ class _LoginState extends State<Login> {
                     ),
                     buildHeight(30),
                     TextField(
-                      onChanged: (x) {
-                        setState(() {});
-                      },
-                      controller: passwordController,
-                      obscureText: isActive,
+                      controller: model.passwordController,
+                      obscureText: model.obscurePassword,
                       decoration: InputDecoration(
-                        suffixIcon:
-                            passwordController.text.isEmpty
-                                ? SizedBox.shrink()
-                                : IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isActive = !isActive;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    isActive
-                                        ? Ionicons.eye_outline
-                                        : Ionicons.eye_off_outline,
-                                    size: 30,
-                                  ),
-                                ),
                         prefixIcon: Icon(
                           Ionicons.lock_closed_outline,
                           size: 35,
@@ -91,8 +82,23 @@ class _LoginState extends State<Login> {
                         hintText: 'Contraseña',
                         hintStyle: TextStyle(fontSize: generalText),
                         border: UnderlineInputBorder(),
+                        suffixIcon:
+                            model.passwordController.text.isEmpty
+                                ? SizedBox.shrink()
+                                : IconButton(
+                                  onPressed: () {
+                                    model.toggleObscurePassword();
+                                  },
+                                  icon: Icon(
+                                    model.obscurePassword
+                                        ? Ionicons.eye_outline
+                                        : Ionicons.eye_off_outline,
+                                    size: 30,
+                                  ),
+                                ),
                       ),
                     ),
+
                     buildHeight(15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -105,39 +111,40 @@ class _LoginState extends State<Login> {
                         Switch(
                           activeColor: Colors.white,
                           activeTrackColor: Colors.green,
-                          value: onOff,
+                          value: model.onOff,
                           onChanged: (x) async {
                             final prefs = await SharedPreferences.getInstance();
 
-                            setState(() {
-                              onOff = x;
-                            });
+                            model.onOff = x;
 
-                            if (onOff) {
-                              // Guarda solo si hay contenido
-                              if (emailController.text.isNotEmpty) {
-                                prefs.setString('email', emailController.text);
+                            if (x) {
+                              if (model.emailController.text.isNotEmpty) {
+                                prefs.setString(
+                                  'email',
+                                  model.emailController.text,
+                                );
                               }
-                              if (passwordController.text.isNotEmpty) {
+                              if (model.passwordController.text.isNotEmpty) {
                                 prefs.setString(
                                   'password',
-                                  passwordController.text,
+                                  model.passwordController.text,
                                 );
                               }
                               prefs.setBool('rememberMe', true);
                             } else {
-                              // Limpia todo si desactiva
                               prefs.remove('email');
                               prefs.remove('password');
                               prefs.setBool('rememberMe', false);
                             }
+
+                            model.notifyListeners();
                           },
                         ),
                       ],
                     ),
                     buildHeight(80),
                     buildPrimaryButton(context, 'Iniciar sesión', () {
-                      Authentication(context);
+                      model.authenticate(context);
                     }),
                   ],
                 ),

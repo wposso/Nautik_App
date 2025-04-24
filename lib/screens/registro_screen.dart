@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:nautik_app/core/global/global.dart';
-import 'package:nautik_app/core/screens/login_screen/login_model.dart';
-import 'package:nautik_app/core/screens/registro_screen/registro_controller.dart';
-import 'package:nautik_app/core/screens/registro_screen/registro_model.dart';
+import 'package:nautik_app/core/utils/ui_helpers.dart';
+import 'package:nautik_app/modules/auth/controllers/register_controller.dart';
+import 'package:nautik_app/modules/auth/widgets/form_widget.dart';
+import 'package:nautik_app/themes/colors.dart';
+import 'package:nautik_app/widgets/custom_widgets.dart';
+import 'package:nautik_app/widgets/nautik_widget.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});

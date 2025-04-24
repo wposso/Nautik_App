@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nautik_app/core/global/global.dart';
+import 'package:nautik_app/themes/colors.dart';
 
 class MapaLibreView extends StatefulWidget {
   const MapaLibreView({super.key});
