@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  void dispose() {
+  void dispose() { 
     _pageController.dispose();
     super.dispose();
   }
@@ -57,30 +57,39 @@ class _HomeState extends State<Home> {
         ),
         iconTheme: IconThemeData(color: primaryColor),
         backgroundColor: Colors.white,
-        // title: Center(
-        //   child: Text('N A U T I K A P P', style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold)),
-        // ),
-        centerTitle: true,
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Bienvenido/a', style: TextStyle(fontSize: 13)),
+            Text(
+              'Melissa Mora G.',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ],
+        ),
+        actionsPadding: EdgeInsets.only(right: 20),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 8, top: 8),
-            child: GestureDetector(
-              onTap: () {},
-              child: ClipOval(
-                child: Container(
-                  color: primaryColor,
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Ionicons.cart_outline,
-                      color: Colors.white,
-                      size: 27,
-                    ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Icon(Ionicons.cart_outline),
+                ),
+              ),
+              buildWidth(10),
+              CircleAvatar(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    'assets/logo/profile_picture.jpg',
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         ],
       ),
@@ -88,58 +97,15 @@ class _HomeState extends State<Home> {
         padding: EdgeInsets.all(15),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Bienvenido/a', style: TextStyle(fontSize: 17),),
-                    Text('Nautik Restaurant', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                  ],
-                ),
-              ],
-            ),
             buildHeight(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 50,
-                  width: 300,
-                  child: SearchBar(
-                    elevation: WidgetStatePropertyAll(0),
-                    backgroundColor: WidgetStatePropertyAll(searchbarColor),
-                    leading: Icon(Ionicons.search_outline),
-                    hintText: 'Buscar platos',
-                    side: WidgetStatePropertyAll(
-                      BorderSide(width: 1, color: Colors.black),
-                    ),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 20),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 1, color: Colors.black),
-                      bottom: BorderSide(width: 1, color: Colors.black),
-                      left: BorderSide(width: 1, color: Colors.black),
-                      right: BorderSide(width: 1, color: Colors.black),
-                    ),
-
-                    shape: BoxShape.circle,
-                    color: Color.fromARGB(255, 240, 240, 240),
-                  ),
-                  child: Icon(Ionicons.cog_outline, size: 25),
-                ),
-              ],
+            SearchBar(
+              elevation: WidgetStatePropertyAll(0),
+              backgroundColor: WidgetStatePropertyAll(searchbarColor),
+              leading: Icon(Ionicons.search_outline),
+              hintText: 'Buscar platos y categorias',
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+              ),
             ),
             SizedBox(height: 20),
             Container(
@@ -169,39 +135,71 @@ class _HomeState extends State<Home> {
                       Positioned(
                         bottom: 25,
                         left: 25,
-                        child: Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            border: Border.all(width: 2, color: Colors.white),
-                            borderRadius: BorderRadius.circular(25),
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            elevation: 5,
+                            backgroundColor: Colors.deepOrange,
+                            foregroundColor: Colors.white,
+                            fixedSize: Size(150, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
                           ),
-                          child: Row(
-                            children: [
-                              Text(
-                                'Comprar',
+                          label: Text(
+                            'Comprar',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          iconAlignment: IconAlignment.end,
+                          icon: Icon(
+                            Ionicons.chevron_forward_circle_sharp,
+                            size: 25,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 25,
+                        right: 30,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Somos tienda',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                buildWidth(5),
+                                Text(
+                                  'en linea',
+                                  style: TextStyle(
+                                    color: Colors.deepOrange,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text('haz tu pedido ahora',
                                 style: TextStyle(
                                   color: Colors.white,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    width: 2,
-                                    color: Colors.white,
-                                  ),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Ionicons.chevron_forward_outline,
-                                  color: primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
+                                )),
+                          ],
                         ),
                       ),
                     ],
@@ -228,7 +226,7 @@ class _HomeState extends State<Home> {
               height: 120,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount:menuList.length,
+                itemCount: menuList.length,
                 itemBuilder: (itemBuilder, i) {
                   return Column(
                     children: [
@@ -237,9 +235,10 @@ class _HomeState extends State<Home> {
                         width: 80,
                         decoration: BoxDecoration(shape: BoxShape.circle),
                         padding: EdgeInsets.all(10),
-                        child: ClipRRect(borderRadius: BorderRadius.circular(50),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
                           child: menuList[i]['image'],
-                        ) 
+                        ),
                       ),
                       Text(menuList[i]['name'].split(' ')[0]),
                     ],
@@ -248,6 +247,53 @@ class _HomeState extends State<Home> {
               ),
             ),
             buildHeight(50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    foregroundColor: Colors.white,
+                    fixedSize: Size(160, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Pedir ahora',
+                    style: TextStyle(
+                      fontSize: generalText,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                buildWidth(20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    foregroundColor: Colors.white,
+                    fixedSize: Size(160, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Mis pedidos',
+                    style: TextStyle(
+                      fontSize: generalText,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                // buildPrimaryButton(context, 'Pedir ahora', () {}),
+                // buildWidth(20),
+                // buildPrimaryButton(context, 'Mis pedidos', () {}),
+              ],
+            ),
             // Padding(
             //   padding: const EdgeInsets.symmetric(vertical: 10),
             //   child: Row(

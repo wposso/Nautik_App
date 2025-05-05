@@ -66,6 +66,7 @@ flutter:
   assets:
     - assets/logo/nautik_baner.jpeg
     - assets/logo/nautik_logo.png
+    - assets/logo/profile_picture.jpg
     - assets/dishes/001.jpg
     - assets/dishes/002.jpg
     - assets/dishes/003.jpg
