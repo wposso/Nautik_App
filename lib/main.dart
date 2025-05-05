@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:nautik_app/modules/auth/controllers/authentication_controller.dart';
 import 'package:nautik_app/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const NautikApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthenticationController()),
+      ],
+      child: const NautikApp(),
+    ),
+  );
 }
 
 class NautikApp extends StatelessWidget {

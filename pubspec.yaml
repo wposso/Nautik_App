@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.5.3
   flutter_map: ^8.1.1
   latlong2: ^0.9.1
+  provider: ^6.1.4
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,7 @@ flutter:
   assets:
     - assets/logo/nautik_baner.jpeg
     - assets/logo/nautik_logo.png
+    - assets/logo/profile_picture.jpg
     - assets/dishes/001.jpg
     - assets/dishes/002.jpg
     - assets/dishes/003.jpg
