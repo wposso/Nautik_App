@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:nautik_app/core/utils/ui_helpers.dart';
 import 'package:nautik_app/core/widgets/global_drawer.dart';
+import 'package:nautik_app/core/widgets/global_footer.dart';
+import 'package:nautik_app/modules/auth/controllers/authentication_controller.dart';
+import 'package:nautik_app/modules/auth/models/user_model.dart';
+import 'package:nautik_app/modules/auth/widgets/form_widget.dart';
 import 'package:nautik_app/modules/products/data/mock_menu_data.dart';
 import 'package:nautik_app/themes/colors.dart';
 import 'package:nautik_app/widgets/custom_widgets.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -37,16 +42,18 @@ class _HomeState extends State<Home> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<AuthenticationController>(context);
     return Scaffold(
       drawer: GlobalDrawer(),
       key: _scaffoldKey,
+      bottomNavigationBar: buildGlobalFooter(context),
       backgroundColor: backgroundColor,
       appBar: AppBar(
         leading: IconButton(
@@ -63,7 +70,9 @@ class _HomeState extends State<Home> {
           children: [
             Text('Bienvenido/a', style: TextStyle(fontSize: 13)),
             Text(
-              'Melissa Mora G.',
+              model.emailController.text.isEmpty
+                  ? 'Melissa Mora G.'
+                  : getUserName(model.emailController.text),
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ],
@@ -118,91 +127,98 @@ class _HomeState extends State<Home> {
                 itemCount: menuList.length,
                 itemBuilder: (itemBuilder, i) {
                   final item = menuList[i];
-                  return Stack(
-                    children: [
-                      Container(
-                        height: 250,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        padding: EdgeInsets.all(15),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: item['image'],
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 25,
-                        left: 25,
-                        child: ElevatedButton.icon(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 5,
-                            backgroundColor: Colors.deepOrange,
-                            foregroundColor: Colors.white,
-                            fixedSize: Size(150, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
+                  return Container(
+                    height: 250,
+                    padding: EdgeInsets.all(10),
+                    width: double.infinity,
+                    decoration: BoxDecoration(),
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 250,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          label: Text(
-                            'Comprar',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          iconAlignment: IconAlignment.end,
-                          icon: Icon(
-                            Ionicons.chevron_forward_circle_sharp,
-                            size: 25,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: item['image'],
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 25,
-                        right: 30,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Somos tienda',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                        Positioned(
+                          bottom: 20,
+                          left: 20,
+                          child: ElevatedButton.icon(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              elevation: 5,
+                              backgroundColor: Colors.deepOrange,
+                              foregroundColor: Colors.white,
+                              fixedSize: Size(150, 50),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
+                            ),
+                            label: Text(
+                              'Comprar',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            iconAlignment: IconAlignment.end,
+                            icon: Icon(
+                              Ionicons.chevron_forward_circle_sharp,
+                              size: 25,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 25,
+                          right: 25,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Somos tienda',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                buildWidth(5),
-                                Text(
-                                  'en linea',
-                                  style: TextStyle(
-                                    color: Colors.deepOrange,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                                  buildWidth(5),
+                                  Text(
+                                    'en linea',
+                                    style: TextStyle(
+                                      color: Colors.deepOrange,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Text('haz tu pedido ahora',
+                                ],
+                              ),
+                              Text(
+                                'haz tu pedido ahora',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
-                                )),
-                          ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),
@@ -246,21 +262,47 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            buildHeight(50),
+            buildHeight(20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Historial de pedidos',
+                  style: TextStyle(
+                    fontSize: generalText,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            buildHeight(10),
+            Card(
+              elevation: 5,
+              child: ListTile(
+                leading: Icon(Ionicons.bar_chart_outline),
+                title: Text('Hisorial'),
+                subtitle: Text('Ver historial de pedidos'),
+                trailing: Icon(Ionicons.chevron_forward_outline),
+              ),
+            ),
+            buildHeight(30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    elevation: 5,
                     backgroundColor: primaryColor,
                     foregroundColor: Colors.white,
                     fixedSize: Size(160, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Categories');
+                  },
                   child: Text(
                     'Pedir ahora',
                     style: TextStyle(
@@ -272,11 +314,12 @@ class _HomeState extends State<Home> {
                 buildWidth(20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    elevation: 5,
                     backgroundColor: primaryColor,
                     foregroundColor: Colors.white,
                     fixedSize: Size(160, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
@@ -289,136 +332,8 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                // buildPrimaryButton(context, 'Pedir ahora', () {}),
-                // buildWidth(20),
-                // buildPrimaryButton(context, 'Mis pedidos', () {}),
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 10),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //         'Platos Populares',
-            //         style: TextStyle(
-            //           fontSize: 24,
-            //           fontWeight: FontWeight.bold,
-            //           color: primaryColor,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.start,
-            //   children: [
-            //     Text(
-            //       'Explora los platos más populares de \ndistintas partes del mundo. Descubre \nsabores únicos y califica tus favoritos.',
-            //       style: TextStyle(
-            //         fontSize: generalText,
-            //         color: Colors.grey[700],
-            //         fontWeight: FontWeight.normal,
-            //       ),
-            //       textAlign: TextAlign.left,
-            //     ),
-            //   ],
-            // ),
-            // buildHeight(20),
-            // Container(
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(15),
-            //   ),
-            //   height: 250,
-            //   child: PageView.builder(
-            //     controller: _pageController,
-            //     itemCount: menuList.length,
-            //     itemBuilder: (context, i) {
-            //       final item = menuList[i];
-            //       final image = item['image'];
-            //       final name = item['name'];
-            //       final country = item['country'];
-            //       final rating = item['rating'];
-
-            //       return Card(
-            //         margin: EdgeInsets.all(10),
-            //         shape: RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.circular(15),
-            //         ),
-            //         elevation: 5,
-            //         child: Padding(
-            //           padding: const EdgeInsets.all(10),
-            //           child: Row(
-            //             children: [
-            //               ClipRRect(
-            //                 borderRadius: BorderRadius.circular(15),
-            //                 child: SizedBox(
-            //                   height: 200,
-            //                   width: 200,
-            //                   child: image,
-            //                 ),
-            //               ),
-            //               SizedBox(width: 10),
-            //               Expanded(
-            //                 child: Column(
-            //                   crossAxisAlignment: CrossAxisAlignment.start,
-            //                   mainAxisAlignment: MainAxisAlignment.center,
-            //                   children: [
-            //                     Text(
-            //                       name,
-            //                       style: TextStyle(
-            //                         fontSize: 18,
-            //                         fontWeight: FontWeight.bold,
-            //                       ),
-            //                     ),
-            //                     SizedBox(height: 4),
-            //                     Text(
-            //                       country,
-            //                       style: TextStyle(
-            //                         fontSize: 14,
-            //                         color: Colors.grey,
-            //                       ),
-            //                     ),
-            //                     SizedBox(height: 4),
-            //                     Text(
-            //                       'Calificación: $rating',
-            //                       style: TextStyle(
-            //                         fontSize: 14,
-            //                         color: Colors.green,
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
-            // SizedBox(height: 20),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: List.generate(menuList.length, (index) {
-            //     return AnimatedContainer(
-            //       duration: Duration(milliseconds: 300),
-            //       margin: EdgeInsets.symmetric(horizontal: 5),
-            //       height: 10,
-            //       width: currentIndex == index ? 20 : 10,
-            //       decoration: BoxDecoration(
-            //         color: currentIndex == index ? primaryColor : Colors.grey,
-            //         borderRadius: BorderRadius.circular(5),
-            //       ),
-            //     );
-            //   }),
-            // ),
-            // buildHeight(70),
-            // buildPrimaryButton(context, 'Pide en línea', () {
-            //   buildDialogOnline(context);
-            // }),
-            // buildHeight(20),
-            // buildPrimaryButton(context, 'Mis pedidos', () {}),
           ],
         ),
       ),

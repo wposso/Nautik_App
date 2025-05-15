@@ -20,7 +20,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 38),
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
         child: Column(
           children: [
             SizedBox(width: 250, child: nautik_logo()),
@@ -83,13 +83,13 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            buildHeight(80),
+            buildHeight(50),
             buildPrimaryButton(context, 'Registrarme', () {
               setState(() {
                 registerUser(context);
               });
             }),
-            buildHeight(20),
+            buildHeight(15),
             Row(
               children: [
                 Text(

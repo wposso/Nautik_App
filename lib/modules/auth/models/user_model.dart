@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class User {
   String email;
   String name;
@@ -26,3 +28,13 @@ List<User> usersList = [
     password: 'admin123',
   ),
 ];
+
+String getUserName(String email) {
+  return usersList
+      .firstWhere(
+        (user) => user.email == email,
+        orElse:
+            () => User(email: 'Invitado', name: '', phone: '', password: ''),
+      )
+      .name;
+}

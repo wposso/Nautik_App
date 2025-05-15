@@ -55,7 +55,9 @@ class GlobalDrawer extends StatelessWidget {
                   context,
                   Ionicons.person_outline,
                   'Mi perfil',
-                  () {},
+                  () {
+                    Navigator.pushNamed(context, '/Perfil');
+                  },
                 ),
                 buildListile(
                   context,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nautik_app/modules/auth/controllers/authentication_controller.dart';
+import 'package:nautik_app/providers/profile_provider.dart';
 import 'package:nautik_app/routes/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +9,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthenticationController()),
+        ChangeNotifierProvider(create: (x) => DateTimeProvider()),
       ],
       child: const NautikApp(),
     ),

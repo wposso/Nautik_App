@@ -40,7 +40,7 @@ void welcomeUser(BuildContext context) {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Bienvenido a nuestra aplicación \nahora podrás disfrutar de la mejor \ncomida',
+                  'Bienvenido a nuestra aplicación,\n ahora podrás disfrutar de la\n mejor comida',
                   style: TextStyle(fontSize: generalText),
                   textAlign: TextAlign.center,
                 ),
@@ -225,6 +225,5 @@ Widget buildPrimaryButton(BuildContext context, String text, Function onTap) {
       text,
       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     ),
-    
   );
 }

@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -60,42 +60,66 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    TextField(
-                      autofocus: true,
-                      controller: model.emailController,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Ionicons.mail_outline, size: 30),
-                        hintText: 'Correo electrónico',
-                        hintStyle: TextStyle(fontSize: generalText),
-                        border: UnderlineInputBorder(),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: TextField(
+                        autofocus: true,
+                        controller: model.emailController,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 10,
+                          ),
+                          prefixIcon: Icon(Ionicons.mail_outline, size: 30),
+                          hintText: 'Correo electrónico',
+                          hintStyle: TextStyle(fontSize: generalText),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          filled: true,
+                          fillColor: inputColor,
+                        ),
                       ),
                     ),
-                    buildHeight(30),
-                    TextField(
-                      controller: model.passwordController,
-                      obscureText: model.obscurePassword,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Ionicons.lock_closed_outline,
-                          size: 35,
-                        ),
-                        hintText: 'Contraseña',
-                        hintStyle: TextStyle(fontSize: generalText),
-                        border: UnderlineInputBorder(),
-                        suffixIcon:
-                            model.passwordController.text.isEmpty
-                                ? SizedBox.shrink()
-                                : IconButton(
-                                  onPressed: () {
-                                    model.toggleObscurePassword();
-                                  },
-                                  icon: Icon(
-                                    model.obscurePassword
-                                        ? Ionicons.eye_outline
-                                        : Ionicons.eye_off_outline,
-                                    size: 30,
+                    buildHeight(20),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: TextField(
+                        controller: model.passwordController,
+                        obscureText: model.obscurePassword,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 10,
+                          ),
+                          prefixIcon: Icon(
+                            Ionicons.lock_closed_outline,
+                            size: 35,
+                          ),
+                          hintText: 'Contraseña',
+                          hintStyle: TextStyle(fontSize: generalText),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          filled: true,
+                          fillColor: inputColor,
+                          suffixIcon:
+                              model.passwordController.text.isEmpty
+                                  ? SizedBox.shrink()
+                                  : IconButton(
+                                    onPressed: () {
+                                      model.toggleObscurePassword();
+                                    },
+                                    icon: Icon(
+                                      model.obscurePassword
+                                          ? Ionicons.eye_outline
+                                          : Ionicons.eye_off_outline,
+                                      size: 30,
+                                    ),
                                   ),
-                                ),
+                        ),
                       ),
                     ),
 
@@ -150,7 +174,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            buildHeight(20),
+            buildHeight(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

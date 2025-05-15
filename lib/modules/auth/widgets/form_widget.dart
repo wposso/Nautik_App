@@ -21,6 +21,7 @@ Widget buildTextField(
     obscureText: isPasswordField ? !isPasswordVisible : false,
     controller: controller,
     decoration: InputDecoration(
+      contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       suffixIcon:
           isPasswordField && controller.text.isNotEmpty
               ? IconButton(
@@ -38,7 +39,9 @@ Widget buildTextField(
               : null,
       prefixIcon: Icon(icon, size: 30),
       hintText: text,
-      border: UnderlineInputBorder(),
+      border: InputBorder.none,
+      filled: true,
+      fillColor: inputColor,
     ),
   );
 }

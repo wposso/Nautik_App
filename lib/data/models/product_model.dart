@@ -154,10 +154,10 @@ void buildModalBottomSheet(
                                 onPressed: () {
                                   Navigator.pop(
                                     context,
-                                  ); // Cierra el AlertDialog
+                                  );
                                   Navigator.pop(
                                     context,
-                                  ); // Cierra el modal bottom sheet
+                                  );
 
                                   Navigator.push(
                                     context,
